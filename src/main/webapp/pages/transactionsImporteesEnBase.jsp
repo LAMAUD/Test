@@ -25,11 +25,7 @@
 					<td><c:out value="${importCSVTransactionPresentsEnBase.getDebit()}" /></td>
 					<td><c:out value="${importCSVTransactionPresentsEnBase.getCredit()}" /></td>
 					<td><c:out value="${importCSVTransactionPresentsEnBase.getDetail()}" /></td>
-					<td class="action"><a
-						href="<c:url value="/transaction/remove"><c:param name="id" value="${ importCSVTransactionPresentsEnBase.id }" /></c:url>">
-							<img src="<c:url value="/resources/images/supprimer.jpg"/>"
-							width="20" height="20" alt="Supprimer" />
-					</a></td>
+					
 				</tr>
 			</c:forEach>
 		</tbody>

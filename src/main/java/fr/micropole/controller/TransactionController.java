@@ -105,7 +105,7 @@ public class TransactionController {
     @RequestMapping( value = "/ajax", method = RequestMethod.GET )
     public ModelAndView ajax( @RequestParam( "input" ) String dateDebut, @RequestParam( "output" ) String dateFin )
             throws ParseException {
-        ModelAndView modelAndView = new ModelAndView( "presentation" );
+        ModelAndView modelAndView = new ModelAndView( "afficheTransaction" );
 
         try {
             transactions = serviceTransaction.readTransactionBetweenDate( dateDebut, dateFin );

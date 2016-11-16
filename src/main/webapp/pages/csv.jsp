@@ -1,20 +1,31 @@
 
 <%@include file="/template/header.jsp"%>
 
-<h1>Import de fichiers CSV ici</h1>
+
 
 <div class="container">
-	<div class="col-lg-7">
+	<div class="col-lg-12 centered">
+		<h1>Import de fichiers CSV</h1>
+	</div>
+	<div class="col-lg-12">
 		<form method="POST" action="/test/csv/upload"
 			enctype="multipart/form-data">
-			File to upload: <input type="file" name="file"> Name: <input
-				type="text" name="name"> <input type="submit" value="Upload">
-			Press here to upload the file!
+			<div class="col-lg-4">
+				<label class="control-label"><c:out value="File to upload:" /><input
+					class="btn btn-default btn-file" type="file" name="file"></label>
+			</div>
+			<div class="col-lg-4">
+				<label class="control-label"><c:out value="Name :" /></label> <input
+					type="text" name="name"> </br>
+			</div>
+			<div class="col-lg-4">
+				<input type="submit" value="Upload">
+			</div>
 		</form>
 	</div>
 
 
-	<div class="ajax col-lg-5">
+	<div class="ajax col-lg-12">
 		<h4>Editer les transactions importées en base</h4>
 		</br> <label class="control-label"><spring:message
 				code="label.date.debut.affichage" text="default text" /></label> <input
@@ -25,10 +36,10 @@
 		<input type="button" value="Liste Transactions"
 			name="Liste Transactions" id="call" />
 
-		
+
 
 	</div>
-	
+
 	<div class="col-lg-12" id="output"></div>
 </div>
 
