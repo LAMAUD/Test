@@ -1,9 +1,15 @@
 package fr.micropole.dao.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import org.springframework.util.StringUtils;
 
 import fr.micropole.dao.GenericDAO;
 
@@ -43,6 +49,29 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
         String query = "SELECT t FROM " + type.getClass().getSimpleName() + " t WHERE t.id = :id";
         T t = (T) this.entityManager.createQuery( query ).setParameter( "id", id ).getSingleResult();
         return t;
+    }
+
+    @SuppressWarnings( "unchecked" )
+    public List<T> readTransactionBetweenDate( String dateDebut, String dateFin ) throws ParseException {
+
+        SimpleDateFormat sm = new SimpleDateFormat( "yyyyMMdd", Locale.ENGLISH );
+
+        if ( StringUtils.isEmpty( dateDebut ) ) {
+            dateDebut = "19700101";
+        }
+        if ( StringUtils.isEmpty( dateFin ) ) {
+            dateFin = "20500101";
+        }
+        Date dateDeb = sm.parse( dateDebut );
+        Date dateF = sm.parse( dateFin );
+
+        String query = "SELECT t FROM " + type.getClass().getSimpleName()
+                + " t WHERE t.date BETWEEN :dateDebut AND :dateFin";
+        return (List<T>) this.entityManager
+                .createQuery( query )
+                .setParameter( "dateDebut", dateDeb )
+                .setParameter( "dateFin", dateF )
+                .getResultList();
     }
 
     public T getType() {

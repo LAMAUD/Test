@@ -1,6 +1,6 @@
 package fr.micropole.service;
 
-import java.util.Date;
+import java.text.ParseException;
 import java.util.List;
 
 import fr.micropole.exception.DAOException;
@@ -13,7 +13,8 @@ public interface ServiceTransaction {
 
     public List<Transaction> readAll() throws ServiceException, DAOException;
 
-    public List<Transaction> readTransactionBetweenDate( Date dateDebut, Date dateFin );
+    public List<Transaction> readTransactionBetweenDate( String dateDebut, String dateFin ) throws DAOException,
+            ParseException;
 
     public Double sumOfExpenses( List<Transaction> transactions );
 

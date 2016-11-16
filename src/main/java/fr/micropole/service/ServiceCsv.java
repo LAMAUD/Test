@@ -17,6 +17,11 @@ public interface ServiceCsv {
 
     public ImportCSVTransaction findById( Integer id ) throws DAOException;
 
-    public List<ImportCSVTransaction> readTransactions() throws DAOException, IOException, ParseException;
+    public List<ImportCSVTransaction> readTransactionsFromImportation( String path ) throws DAOException, IOException,
+            ParseException;
+
+    public List<ImportCSVTransaction> readTransactionBetweenDate( String dateDebut, String dateFin )
+            throws DAOException,
+            ParseException;
 
 }

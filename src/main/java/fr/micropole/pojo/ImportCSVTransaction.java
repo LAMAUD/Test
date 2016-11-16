@@ -51,6 +51,61 @@ public class ImportCSVTransaction implements Serializable {
         Detail = detail;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ( ( Detail == null ) ? 0 : Detail.hashCode() );
+        result = prime * result + ( ( credit == null ) ? 0 : credit.hashCode() );
+        result = prime * result + ( ( date == null ) ? 0 : date.hashCode() );
+        result = prime * result + ( ( debit == null ) ? 0 : debit.hashCode() );
+        result = prime * result + ( ( libelle == null ) ? 0 : libelle.hashCode() );
+        result = prime * result + ( ( numeroOperation == null ) ? 0 : numeroOperation.hashCode() );
+        return result;
+    }
+
+    @Override
+    public boolean equals( Object obj ) {
+        if ( this == obj )
+            return true;
+        if ( obj == null )
+            return false;
+        if ( getClass() != obj.getClass() )
+            return false;
+        ImportCSVTransaction other = (ImportCSVTransaction) obj;
+        if ( Detail == null ) {
+            if ( other.Detail != null )
+                return false;
+        } else if ( !Detail.equals( other.Detail ) )
+            return false;
+        if ( credit == null ) {
+            if ( other.credit != null )
+                return false;
+        } else if ( !credit.equals( other.credit ) )
+            return false;
+        if ( date == null ) {
+            if ( other.date != null )
+                return false;
+        } else if ( !date.equals( other.date ) )
+            return false;
+        if ( debit == null ) {
+            if ( other.debit != null )
+                return false;
+        } else if ( !debit.equals( other.debit ) )
+            return false;
+        if ( libelle == null ) {
+            if ( other.libelle != null )
+                return false;
+        } else if ( !libelle.equals( other.libelle ) )
+            return false;
+        if ( numeroOperation == null ) {
+            if ( other.numeroOperation != null )
+                return false;
+        } else if ( !numeroOperation.equals( other.numeroOperation ) )
+            return false;
+        return true;
+    }
+
     public Integer getId() {
         return id;
     }

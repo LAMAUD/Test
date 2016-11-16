@@ -1,6 +1,6 @@
 package fr.micropole.service.impl;
 
-import java.util.Date;
+import java.text.ParseException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -42,7 +42,8 @@ public class ServiceImplTransaction implements ServiceTransaction {
     }
 
     @Override
-    public List<Transaction> readTransactionBetweenDate( Date dateDebut, Date dateFin ) {
+    public List<Transaction> readTransactionBetweenDate( String dateDebut, String dateFin ) throws DAOException,
+            ParseException {
 
         return dAOTransaction.readTransactionBetweenDate( dateDebut, dateFin );
     }

@@ -1,5 +1,6 @@
 package fr.micropole.dao;
 
+import java.text.ParseException;
 import java.util.List;
 
 import fr.micropole.exception.DAOException;
@@ -13,5 +14,8 @@ public interface GenericDAO<T> {
     public void remove( T t ) throws DAOException;
 
     public T findById( Integer id ) throws DAOException;
+
+    public List<T> readTransactionBetweenDate( String dateDebut, String dateFin ) throws DAOException,
+            ParseException;
 
 }

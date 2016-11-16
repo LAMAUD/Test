@@ -1,18 +1,14 @@
 package fr.micropole.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -111,17 +107,11 @@ public class TransactionController {
             throws ParseException {
         ModelAndView modelAndView = new ModelAndView( "presentation" );
 
-        SimpleDateFormat sm = new SimpleDateFormat( "yyyyMMdd", Locale.ENGLISH );
-
-        if ( StringUtils.isEmpty( dateDebut ) ) {
-            dateDebut = "19700101";
+        try {
+            transactions = serviceTransaction.readTransactionBetweenDate( dateDebut, dateFin );
+        } catch ( DAOException e ) {
+            LOGGER.error( "Impossible de lire les transactions sur cette période", e );
         }
-        if ( StringUtils.isEmpty( dateFin ) ) {
-            dateFin = "20500101";
-        }
-        Date dateDeb = sm.parse( dateDebut );
-        Date dateF = sm.parse( dateFin );
-        transactions = serviceTransaction.readTransactionBetweenDate( dateDeb, dateF );
 
         modelAndView.addObject( "transactions", transactions );
         return modelAndView;
