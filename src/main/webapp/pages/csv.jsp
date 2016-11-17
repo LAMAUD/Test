@@ -8,23 +8,30 @@
 		<h1>Import de fichiers CSV</h1>
 	</div>
 	<div class="col-lg-12">
-		<form method="POST" action="/test/csv/upload"
-			enctype="multipart/form-data">
-			<div class="col-lg-4">
-				<label class="control-label"><c:out value="File to upload:" /><input
-					class="btn btn-default btn-file" type="file" name="file"></label>
-			</div>
-			<div class="col-lg-4">
-				<label class="control-label"><c:out value="Name :" /></label> <input
-					type="text" name="name"> </br>
-			</div>
-			<div class="col-lg-4">
-				<input type="submit" value="Upload">
-			</div>
-		</form>
+		<div class="col-lg-9">
+			<form method="POST" action="/test/csv/upload"
+				enctype="multipart/form-data">
+				<div class="col-lg-4">
+					<label class="control-label"><c:out value="File to upload:" /><input
+						class="btn btn-default btn-file" type="file" name="file"></label>
+				</div>
+				<div class="col-lg-4">
+					<label class="control-label"><c:out value="Name :" /></label> <input
+						type="text" name="name"> </br>
+				</div>
+				<div class="col-lg-4">
+					<input type="submit" value="Upload">
+				</div>
+
+			</form>
+		</div>
+		<div class="col-lg-3">
+			<form action="/test/csv/transfert">
+				<input type="submit" value="Transfert Transaction vers Appli" />
+			</form>
+			<c:out value="${messageTransfertTransaction}"></c:out>
+		</div>
 	</div>
-
-
 	<div class="ajax col-lg-12">
 		<h4>Editer les transactions importées en base</h4>
 		</br> <label class="control-label"><spring:message

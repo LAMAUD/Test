@@ -70,11 +70,11 @@
 		    <input id="op" type="date" name="" value="" placeholder="01/01/2050" /><br></br>
 		    <input type="button" value="Liste Transactions" name="Liste Transactions" id="call"/>
 		    
-		    <div class="col-lg-12" id="output"></div>
+		    
 		    
 		</div>
 
-		
+		<div class="col-lg-12" id="output"></div>
 		
  		<script type="text/javascript">
 	        $(document).ready(function() {

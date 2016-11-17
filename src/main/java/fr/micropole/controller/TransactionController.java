@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.micropole.enumeration.SpecifiedCategory;
 import fr.micropole.exception.DAOException;
 import fr.micropole.exception.ServiceException;
 import fr.micropole.pojo.Category;
@@ -56,6 +57,21 @@ public class TransactionController {
             categories = serviceCategory.readAll();
         } catch ( ServiceException | DAOException e ) {
             LOGGER.error( "Impossible de lire la liste des catégories à partir de la création de transactions", e );
+        }
+
+        for ( SpecifiedCategory specifiedCategory : SpecifiedCategory.values() ) {
+            Category cat = new Category();
+            cat.setName( specifiedCategory.toString() );
+            cat.setDescription( specifiedCategory.getDescription() );
+            if ( !categories.contains( cat ) ) {
+                try {
+                    cat = serviceCategory.create( cat );
+                    categories.add( cat );
+                } catch ( ServiceException e ) {
+                    LOGGER.error( "La catégorie n'a pas été persistée dans la base", e );
+                }
+            }
+
         }
         modelAndView.addObject( "transaction", new Transaction() );
         modelAndView.addObject( "category", new Category() );
