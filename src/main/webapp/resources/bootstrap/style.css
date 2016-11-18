@@ -1,3 +1,11 @@
-.navbar {
-    margin-bottom: 0px;
+div#bs-example-navbar-collapse-1 {
+    background-color: #5d5858;
+}
+
+a.navbar-brand.page-scroll {
+    background-color: #5d5858;
+}
+
+a.page-scroll {
+    background-color: #5d5858;
 }

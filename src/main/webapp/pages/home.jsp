@@ -1,6 +1,8 @@
 <%@include file="/template/header.jsp"%>
 
 
+
+
 <div class="container col-lg-12">
 	<div class="col-lg-4">
 		<h4>Résumé Recette / Dépenses</h4>
@@ -39,7 +41,7 @@
 
 	</div>
 	<div class="col-lg-4"></div>
-
 </div>
+
 </body>
 </html>

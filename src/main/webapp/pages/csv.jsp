@@ -52,6 +52,7 @@
 	<div class="col-lg-12" id="output"></div>
 </div>
 
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#call').click(function() {
@@ -70,5 +71,5 @@
 
 	});
 </script>
-</body>
-</html>
+
+<%@include file="/template/footer.jsp"%>
