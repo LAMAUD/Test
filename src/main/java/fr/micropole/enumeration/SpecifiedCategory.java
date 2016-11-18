@@ -25,7 +25,12 @@ public enum SpecifiedCategory {
     SCI( "SCI 3L", "SCI 3L" ),
     VIE_QUOTIDIENNE( "Vie Quotidienne", "La Poste - fournitures" ),
     FASTFOOD( "Fast Food", "Truc de gros" ),
-    SPECTACLE( "Spectacle", "Festival - Théâtre" );
+    SPECTACLE( "Spectacle", "Festival - Théâtre" ),
+    DON( "DON", "Donation" ),
+    SECU( "Sécurité Sociale", "Sécurité Sociale" ),
+    PEL( "Remboursement PEL", "Plan Epargne Social" ),
+    FRAIS( "Frais Banquaire", "Frais bancaires" ),
+    ECONOMIES( "Economies", "Reste fais en fin de mois" );
 
     private String   name        = "";
     private String   description = "";

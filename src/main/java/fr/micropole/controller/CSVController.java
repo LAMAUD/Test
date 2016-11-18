@@ -136,6 +136,8 @@ public class CSVController {
                 if ( !transactions.contains( transaction ) ) {
 
                     transaction = serviceTransaction.create( transaction );
+                } else {
+                    System.out.println( "Pas de transaction" );
                 }
             } catch ( ServiceException e ) {
                 messageTransfertTransaction = "Le transfert a échoué";

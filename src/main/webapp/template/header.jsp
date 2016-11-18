@@ -12,12 +12,25 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<c:url var="urlResources" value="/resources/bootstrap" />
 		<title>Compta</title>
-		<script src="${urlResources}/dist/js/jquery-3.1.1.min.js"></script>
+		<script src="${urlResources}/vendor/jquery/jquery.js"></script>
 
-		<link rel="stylesheet" href="${urlResources}/dist/css/bootstrap.css"/>
-		<link rel="stylesheet" href="${urlResources}/style.css"/>
-		<script src="${urlResources}/dist/js/bootstrap.js"></script>
-		
+
+    <title>Creative - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="${urlResources}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="${urlResources}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="${urlResources}/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="${urlResources}/css/creative.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="${urlResources}/style.css"/>	
 		
 	</head>
 	<body>

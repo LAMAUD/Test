@@ -3,36 +3,38 @@
 
 
 
-<div class="container">
-	<div class="col-lg-12 centered">
-		<h1>Import de fichiers CSV</h1>
+
+<div class="col-lg-12 jumbotron">
+	<div class="col-lg-12 text-center">
+		<h3>Import de fichiers CSV</h3>
 	</div>
-	<div class="col-lg-12">
-		<div class="col-lg-9">
+	<div class="col-lg-12 row-fluid">
+		<div class="col-lg-8 ">
 			<form method="POST" action="/test/csv/upload"
 				enctype="multipart/form-data">
-				<div class="col-lg-4">
+				<div class="col-lg-6">
 					<label class="control-label"><c:out value="File to upload:" /><input
-						class="btn btn-default btn-file" type="file" name="file"></label>
+						class="btn btn-default" type="file" name="file"></label>
 				</div>
-				<div class="col-lg-4">
-					<label class="control-label"><c:out value="Name :" /></label> <input
-						type="text" name="name"> </br>
-				</div>
-				<div class="col-lg-4">
-					<input type="submit" value="Upload">
+				<div class="col-lg-6 bottom">
+					<div>&nbsp;</div>
+					<input class="btn btn-default" type="submit" value="Upload">
 				</div>
 
 			</form>
 		</div>
-		<div class="col-lg-3">
+		<div class="col-lg-4">
+			<div>&nbsp;</div>
 			<form action="/test/csv/transfert">
-				<input type="submit" value="Transfert Transaction vers Appli" />
+				<input class="btn btn-default" type="submit"
+					value="Transfert Transaction vers Appli" />
 			</form>
 			<c:out value="${messageTransfertTransaction}"></c:out>
 		</div>
 	</div>
-	<div class="ajax col-lg-12">
+</div>
+<div class="container-fluid">
+	<div class="ajax col-lg-12 marginTop text-center">
 		<h4>Editer les transactions importées en base</h4>
 		</br> <label class="control-label"><spring:message
 				code="label.date.debut.affichage" text="default text" /></label> <input
@@ -40,8 +42,8 @@
 			class="control-label"><spring:message
 				code="label.date.fin.affichage" text="default text" /></label> <input
 			id="op" type="date" name="" value="" placeholder="01/01/2050" /><br></br>
-		<input type="button" value="Liste Transactions"
-			name="Liste Transactions" id="call" />
+		<input class="btn btn-default" type="button"
+			value="Liste Transactions" name="Liste Transactions" id="call" />
 
 
 

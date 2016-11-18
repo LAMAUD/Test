@@ -38,13 +38,13 @@ public class TransfertImport {
 
             cat = SpecifiedCategory.COURSES.getCategory();
 
-        } else if ( libelle.contains( "QUICK" ) || libelle.contains( "MMG" ) ) {
+        } else if ( libelle.contains( "QUICK" ) || libelle.contains( "MMG" ) || libelle.contains( "MARSHEL" ) ) {
 
             cat = SpecifiedCategory.FASTFOOD.getCategory();
 
         } else if ( libelle.contains( "AUTO ESPACE MIL" ) || libelle.contains( "RELAIS MILLES" )
                 || libelle.contains( "SARL KRH2" ) || libelle.contains( "ASF AVIGNON-N" )
-                || libelle.contains( "CARREFOUR DAC" ) || libelle.contains( "DRIVY" ) ) {
+                || libelle.contains( "CARREFOUR DAC" ) || libelle.contains( "DRIVY" ) || libelle.contains( "ASF" ) ) {
 
             cat = SpecifiedCategory.VOITURE.getCategory();
 
@@ -81,8 +81,7 @@ public class TransfertImport {
 
             cat = SpecifiedCategory.SPORT.getCategory();
 
-        } else if ( libelle.contains( "COTIS FORFAIT SATELLIS ESS" ) || libelle.contains( "GARANTIE-PRIVEE" )
-                || libelle.contains( "FILIA-MAIF" ) ) {
+        } else if ( libelle.contains( "GARANTIE-PRIVEE" ) || libelle.contains( "FILIA-MAIF" ) ) {
 
             cat = SpecifiedCategory.ASSURANCE.getCategory();
 
@@ -102,7 +101,7 @@ public class TransfertImport {
 
             cat = SpecifiedCategory.VIE_QUOTIDIENNE.getCategory();
 
-        } else if ( libelle.contains( "UN P'TIT COIN" ) || libelle.contains( "MRN" ) ) {
+        } else if ( libelle.contains( "UN P'TIT COIN" ) || libelle.contains( "MRN" ) || libelle.contains( "MAZEL" ) ) {
 
             cat = SpecifiedCategory.RESTAURANT.getCategory();
 
@@ -114,9 +113,29 @@ public class TransfertImport {
 
             cat = SpecifiedCategory.SPECTACLE.getCategory();
 
-        } else if ( libelle.contains( "Deneuve Tabac" ) ) {
+        } else if ( libelle.contains( "DENEUVE TABAC" ) ) {
 
             cat = SpecifiedCategory.CIGARETTES.getCategory();
+
+        } else if ( libelle.contains( "WIKIMEDIAFOUNDA" ) ) {
+
+            cat = SpecifiedCategory.DON.getCategory();
+
+        } else if ( libelle.contains( "CPAM" ) ) {
+
+            cat = SpecifiedCategory.SECU.getCategory();
+
+        } else if ( libelle.contains( "VIR SEPA MONSIEUR CEDRIC LAMAUD" ) ) {
+
+            cat = SpecifiedCategory.PEL.getCategory();
+
+        } else if ( libelle.contains( "FRAIS" ) || libelle.contains( "COTIS FORFAIT SATELLIS ESS" ) ) {
+
+            cat = SpecifiedCategory.FRAIS.getCategory();
+
+        } else if ( libelle.contains( "ECONOMIES" ) ) {
+
+            cat = SpecifiedCategory.ECONOMIES.getCategory();
 
         } else {
 
