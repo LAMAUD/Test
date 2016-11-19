@@ -1,6 +1,8 @@
 	
 	<%@include file="/template/header.jsp"%>
 	
+	<div class="jumbotron">
+	</div>
 		<div class="col-lg-7">
 			<c:url var="createTransaction" value="/transaction/save"/>
 			<form:form action="${ createTransaction }" method="POST" commandName="transaction" class="form-horizontal">
@@ -68,7 +70,7 @@
 			<input  id="ip" type="date" name="" value=""  placeholder="01/01/1970"/>
 		    <label class="control-label"><spring:message code="label.date.fin.affichage" text="default text" /></label>
 		    <input id="op" type="date" name="" value="" placeholder="01/01/2050" /><br></br>
-		    <input type="button" value="Liste Transactions" name="Liste Transactions" id="call"/>
+		    <input type="button" class="btn btn-default" value="Liste Transactions" name="Liste Transactions" id="call"/>
 		    
 		    
 		    

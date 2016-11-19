@@ -1,6 +1,8 @@
 	
 	<%@include file="/template/header.jsp"%>
 	
+	<div class="jumbotron">
+	</div>
 		<div>
 			<c:url var="createCategory" value="/category/save"/>
 			<form:form action="${ createCategory }" method="POST" commandName="category">

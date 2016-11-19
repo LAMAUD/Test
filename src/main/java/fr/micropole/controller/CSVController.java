@@ -54,11 +54,10 @@ public class CSVController {
     }
 
     @RequestMapping( value = "/upload", method = RequestMethod.POST )
-    public ModelAndView upload( @RequestParam( "name" ) String name,
-            @RequestParam( "file" ) MultipartFile file ) {
+    public ModelAndView upload(@RequestParam( "file" ) MultipartFile file ) {
         ModelAndView modelAndView = new ModelAndView( "csv" );
 
-        String[] message = UploadFileHelper.uploadFile( name, file );
+        String[] message = UploadFileHelper.uploadFile( file );
         try {
             importCSVTransactions = serviceCsv.readTransactionsFromImportation( message[1] );
         } catch ( DAOException | IOException | ParseException e ) {

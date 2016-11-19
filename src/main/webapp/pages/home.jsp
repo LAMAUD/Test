@@ -2,7 +2,8 @@
 
 
 
-
+<div class="jumbotron">
+	</div>
 <div class="container col-lg-12">
 	<div class="col-lg-4">
 		<h4>Résumé Recette / Dépenses</h4>

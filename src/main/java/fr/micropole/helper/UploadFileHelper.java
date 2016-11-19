@@ -14,13 +14,13 @@ public class UploadFileHelper {
 
     private static final Logger LOGGER         = Logger.getLogger( UploadFileHelper.class );
 
-    public static String[] uploadFile( String name, MultipartFile file ) {
+    public static String[] uploadFile(MultipartFile file ) {
         String[] message = new String[2];
 
-        if ( StringUtils.isEmpty( name ) ) {
+        
 
-            name = file.getOriginalFilename();
-        }
+         String   name = file.getOriginalFilename();
+        
         if ( !file.isEmpty() ) {
             try {
                 byte[] bytes = file.getBytes();
