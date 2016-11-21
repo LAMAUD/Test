@@ -101,4 +101,17 @@ public class ServiceImplTransaction implements ServiceTransaction {
         return ( Math.floor( x * pow ) ) / pow;
     }
 
+    @Override
+    public List<Transaction> readTransactionBetweenDateAndByCategory( String dateDebut, String dateFin, String category )
+            throws ParseException {
+
+        return dAOTransaction.readTransactionBetweenDateAndByCategory( dateDebut, dateFin, category );
+    }
+
+    @Override
+    public Transaction findById( Integer id ) throws DAOException {
+        // TODO Auto-generated method stub
+        return dAOTransaction.findById( id );
+    }
+
 }

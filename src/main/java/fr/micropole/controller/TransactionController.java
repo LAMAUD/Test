@@ -1,5 +1,6 @@
 package fr.micropole.controller;
 
+import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -119,17 +121,53 @@ public class TransactionController {
     }
 
     @RequestMapping( value = "/ajax", method = RequestMethod.GET )
-    public ModelAndView ajax( @RequestParam( "input" ) String dateDebut, @RequestParam( "output" ) String dateFin )
+    public ModelAndView ajax( @RequestParam( "input" ) String dateDebut, @RequestParam( "output" ) String dateFin,
+            @RequestParam( "category" ) String category )
             throws ParseException {
         ModelAndView modelAndView = new ModelAndView( "afficheTransaction" );
 
-        try {
-            transactions = serviceTransaction.readTransactionBetweenDate( dateDebut, dateFin );
-        } catch ( DAOException e ) {
-            LOGGER.error( "Impossible de lire les transactions sur cette période", e );
+        Charset charEncodeInit = Charset.forName( "ISO-8859-1" );
+        Charset charEncodeFinal = Charset.forName( "UTF-8" );
+        byte byteStringCategory[] = category.getBytes( charEncodeInit );
+        String categoryEncoded = new String( byteStringCategory, charEncodeFinal );
+
+        if ( StringUtils.isEmpty( category ) ) {
+            try {
+                transactions = serviceTransaction.readTransactionBetweenDate( dateDebut, dateFin );
+            } catch ( DAOException e ) {
+                LOGGER.error( "Impossible de lire les transactions sur cette période", e );
+            }
+        } else {
+            transactions = serviceTransaction.readTransactionBetweenDateAndByCategory( dateDebut, dateFin,
+                    categoryEncoded );
         }
 
         modelAndView.addObject( "transactions", transactions );
+        return modelAndView;
+    }
+
+    @RequestMapping( value = "/update", method = RequestMethod.GET )
+    public ModelAndView update( @RequestParam( "id" ) String id )
+            throws ParseException {
+        ModelAndView modelAndView = new ModelAndView( "updateTransaction" );
+        Transaction transaction = new Transaction();
+        Integer idConverti = Integer.parseInt( id );
+
+        try {
+            transaction = serviceTransaction.findById( idConverti );
+        } catch ( DAOException e ) {
+            LOGGER.error( "Impossible de trouver la transaction faisant référence à l'id : " + id, e );
+        }
+
+        try {
+            categories = serviceCategory.readAll();
+        } catch ( ServiceException | DAOException e ) {
+            LOGGER.error( "Impossible de lire la liste des catégories à partir de la création de transactions", e );
+        }
+        // transactions = serviceTransaction.
+
+        modelAndView.addObject( "categories", categories );
+        modelAndView.addObject( "transaction", transaction );
         return modelAndView;
     }
 }

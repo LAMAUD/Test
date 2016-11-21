@@ -66,7 +66,7 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
         Date dateF = sm.parse( dateFin );
 
         String query = "SELECT t FROM " + type.getClass().getSimpleName()
-                + " t WHERE t.date BETWEEN :dateDebut AND :dateFin";
+                + " t WHERE t.date BETWEEN :dateDebut AND :dateFin ORDER BY t.date DESC";
         return (List<T>) this.entityManager
                 .createQuery( query )
                 .setParameter( "dateDebut", dateDeb )

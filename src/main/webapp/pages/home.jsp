@@ -1,9 +1,8 @@
+<%@page import="java.util.HashMap"%>
 <%@include file="/template/header.jsp"%>
 
 
-
-<div class="jumbotron">
-	</div>
+<div class="jumbotron"></div>
 <div class="container col-lg-12">
 	<div class="col-lg-4">
 		<h4>Résumé Recette / Dépenses</h4>
@@ -41,8 +40,16 @@
 		</div>
 
 	</div>
-	<div class="col-lg-4"></div>
+	<div class="col-lg-4"><div id="piechart_3d" style="width: 900px; height: 500px;"></div></div>
 </div>
+<div class="container col-lg-12">
+	
+</div>
+
+
+${script }
+
+
 
 </body>
 </html>

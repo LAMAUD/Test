@@ -137,6 +137,10 @@ public class TransfertImport {
 
             cat = SpecifiedCategory.ECONOMIES.getCategory();
 
+        } else if ( libelle.contains( "PRLV DIRECTION GENERALE DES FINA" ) ) {
+
+            cat = SpecifiedCategory.ECONOMIES.getCategory();
+
         } else {
 
             cat = SpecifiedCategory.AUCUNE_CATEGORIE.getCategory();

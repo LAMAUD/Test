@@ -21,10 +21,15 @@
 							<td><c:out value="${transaction.getDescription()}" /></td>
 							<td><c:out value="${transaction.getDateString()}" /></td>
 							<td class="action">
-		                        <a href="<c:url value="/transaction/remove"><c:param name="id" value="${ transaction.id }" /></c:url>">
+		                        <a href="#" onclick="update('<c:url value="/transaction/update"><c:param name="id" value="${ transaction.id }" /></c:url>')">
 		                            <img src="<c:url value="/resources/images/supprimer.jpg"/>" width="20" height="20" alt="Supprimer" />
 		                        </a>
 		                    </td>
+<!-- 							<td class="action"> -->
+<%-- 		                        <a href="<c:url value="/transaction/remove"><c:param name="id" value="${ transaction.id }" /></c:url>"> --%>
+<%-- 		                            <img src="<c:url value="/resources/images/supprimer.jpg"/>" width="20" height="20" alt="Supprimer" /> --%>
+<!-- 		                        </a> -->
+<!-- 		                    </td> -->
 						</tr>
    					</c:forEach>
    				</tbody>

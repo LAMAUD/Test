@@ -45,8 +45,6 @@
 		<input class="btn btn-default" type="button"
 			value="Liste Transactions" name="Liste Transactions" id="call" />
 
-
-
 	</div>
 
 	<div class="col-lg-12" id="output"></div>

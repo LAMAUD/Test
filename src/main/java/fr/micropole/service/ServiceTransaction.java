@@ -21,4 +21,9 @@ public interface ServiceTransaction {
     public Double sumOfIncome( List<Transaction> transactions );
 
     public Double rateExpensesIncome( List<Transaction> transactions );
+
+    public List<Transaction> readTransactionBetweenDateAndByCategory( String dateDebut, String dateFin, String category )
+            throws ParseException;
+
+    public Transaction findById( Integer id ) throws DAOException;
 }

@@ -30,7 +30,8 @@ public enum SpecifiedCategory {
     SECU( "Sécurité Sociale", "Sécurité Sociale" ),
     PEL( "Remboursement PEL", "Plan Epargne Social" ),
     FRAIS( "Frais Banquaire", "Frais bancaires" ),
-    ECONOMIES( "Economies", "Reste fais en fin de mois" );
+    ECONOMIES( "Economies", "Reste fais en fin de mois" ),
+    IMPOTS( "Impots", "Impots" );
 
     private String   name        = "";
     private String   description = "";

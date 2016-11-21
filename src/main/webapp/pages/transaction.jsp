@@ -70,6 +70,13 @@
 			<input  id="ip" type="date" name="" value=""  placeholder="01/01/1970"/>
 		    <label class="control-label"><spring:message code="label.date.fin.affichage" text="default text" /></label>
 		    <input id="op" type="date" name="" value="" placeholder="01/01/2050" /><br></br>
+		    <label for="filtre_categorie">Filtrer par Catégorie</label>
+		    <select name="filtre_categorie" size="1" id="filtre_categorie">
+		    	<option value="">---Filtrer par Categorie---</option>
+		    	<c:forEach var="category" items="${categories}">
+		    		<option value="${category.getName()}">${category.getName()}</option>
+		    	</c:forEach>
+		    </select></br></br>
 		    <input type="button" class="btn btn-default" value="Liste Transactions" name="Liste Transactions" id="call"/>
 		    
 		    
@@ -85,10 +92,12 @@
 	            	var regex = new RegExp('-', 'g');
 	            	var dateDebut = $('#ip').val().replace(regex,"");
                 	var dateFin = $('#op').val().replace(regex,"");
+                	var category = $('#filtre_categorie').val();
+                	console.log(category);
 	                $.ajax({
 	                    type: "GET",
 	                    url: "/test/transaction/ajax",   
-	                    data: "input=" +dateDebut+"&output="+dateFin,
+	                    data: "input=" +dateDebut+"&output="+dateFin+"&category="+category,
 	                    success: function(msg){      
 	                            $('#output').html(msg);
 	                    }
@@ -98,5 +107,4 @@
 	        });
 	    </script>
 	
-	</body>
-</html>
+	<%@include file="/template/footer.jsp"%>

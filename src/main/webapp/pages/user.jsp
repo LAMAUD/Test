@@ -11,8 +11,8 @@
 		<div class="form-group">
 			<label for="nom"> <spring:message code="label.nom.user"
 					text="default text" /></label>
-			<form:input type="text" id="nom" path="nom" placeholder="nom" />
-			<form:errors path="nom" element="div" />
+			<form:input type="text" id="nom" path="name" placeholder="nom" />
+			<form:errors path="name" element="div" />
 		</div>
 
 		<div class="form-group">

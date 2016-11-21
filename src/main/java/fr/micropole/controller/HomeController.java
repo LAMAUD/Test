@@ -1,6 +1,7 @@
 package fr.micropole.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,6 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import fr.micropole.exception.DAOException;
 import fr.micropole.exception.ServiceException;
+import fr.micropole.helper.DepensesParCategoriesHelper;
+import fr.micropole.javascript.JavaEnJS;
+import fr.micropole.pojo.Category;
 import fr.micropole.pojo.Transaction;
 import fr.micropole.service.ServiceCategory;
 import fr.micropole.service.ServiceTransaction;
@@ -32,6 +36,9 @@ public class HomeController {
 
     @RequestMapping( value = "/initForm", method = RequestMethod.GET )
     public ModelAndView initForm() {
+
+        HashMap<Category, Double> categorisation = new HashMap<>();
+
         ModelAndView modelAndView = new ModelAndView( "home" );
 
         try {
@@ -41,7 +48,9 @@ public class HomeController {
         }
 
         Double rate = serviceTransaction.rateExpensesIncome( transactions );
-
+        categorisation = DepensesParCategoriesHelper.DepenseParCategorieTotal( transactions );
+        StringBuilder script = JavaEnJS.PieChart( categorisation );
+        modelAndView.addObject( "script", script );
         modelAndView.addObject( "Depenses", serviceTransaction.sumOfExpenses( transactions ) );
         modelAndView.addObject( "Recettes", serviceTransaction.sumOfIncome( transactions ) );
         modelAndView.addObject( "ratioDepensesRecettes", rate );

@@ -20,7 +20,7 @@ public class UserValidation implements Validator {
 
         User utilisateur = (User) user;
 
-        if ( utilisateur.getNom() == null ) {
+        if ( utilisateur.getName() == null ) {
             errors.rejectValue( "nom", "hack", "le Nom est nul" );
         }
     }

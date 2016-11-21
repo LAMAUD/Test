@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 import org.apache.log4j.Logger;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UploadFileHelper {
@@ -14,13 +13,11 @@ public class UploadFileHelper {
 
     private static final Logger LOGGER         = Logger.getLogger( UploadFileHelper.class );
 
-    public static String[] uploadFile(MultipartFile file ) {
+    public static String[] uploadFile( MultipartFile file ) {
         String[] message = new String[2];
 
-        
+        String name = file.getOriginalFilename();
 
-         String   name = file.getOriginalFilename();
-        
         if ( !file.isEmpty() ) {
             try {
                 byte[] bytes = file.getBytes();

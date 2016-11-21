@@ -22,17 +22,17 @@ public class User implements Serializable {
     private Integer           id;
 
     @NotEmpty
-    private String            nom;
+    private String            name;
 
     @NotEmpty
     private String            password;
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom( String nom ) {
-        this.nom = nom;
+    public void setName( String name ) {
+        this.name = name;
     }
 
     public String getPassword() {
