@@ -25,7 +25,10 @@ public class TransactionValidation implements Validator {
             errors.rejectValue( "Depense - recette", "hack", "Un des champs Dépense ou Recette doit être rempli" );
         }
 
-        if ( transaction.getDepense() != null && transaction.getRecette() != null ) {
+        if ( ( transaction.getDepense() != null && transaction.getRecette() != null )
+                && ( transaction.getDepense() != 0.0 && transaction.getRecette() != 0.0 )
+                && ( transaction.getDepense() != null && transaction.getRecette() != 0.0 )
+                && ( transaction.getDepense() != 0.0 && transaction.getRecette() != null ) ) {
             errors.rejectValue( "Depense - recette", "hack", "Un des champs Dépense ou Recette doit être vide" );
         }
 

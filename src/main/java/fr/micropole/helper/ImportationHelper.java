@@ -15,6 +15,8 @@ import org.apache.log4j.Logger;
 import org.springframework.util.StringUtils;
 
 import au.com.bytecode.opencsv.CSVReader;
+import fr.micropole.pojo.CategorisationLibelle;
+import fr.micropole.pojo.Category;
 import fr.micropole.pojo.ImportCSVTransaction;
 
 public class ImportationHelper {
@@ -93,6 +95,44 @@ public class ImportationHelper {
             LOGGER.error( "Impossible de lire le fichier à l'emplacement suivant : " + path, e );
         }
         return importCSVTransactions;
+    }
+
+    public static List<CategorisationLibelle> importationCSVCategorisationLibelle( String path,
+            List<Category> categories ) throws IOException {
+        File file = new File( path );
+        System.out.println( file.getAbsolutePath() );
+        List<CategorisationLibelle> categorisationLibelles = new ArrayList<CategorisationLibelle>();
+        List<String[]> data = new ArrayList<String[]>();
+        try {
+            FileReader fr = new FileReader( file );
+            CSVReader csvReader = new CSVReader( fr, SEPARATOR );
+
+            String[] nextLine = null;
+            while ( ( nextLine = csvReader.readNext() ) != null ) {
+
+                data.add( nextLine );
+            }
+
+            for ( String[] oneData : data ) {
+                String id = oneData[0];
+                String categorie = oneData[1];
+                String libelle = oneData[2];
+                Category cat = new Category();
+                Integer idInt = Integer.parseInt( id );
+                for ( Category category : categories ) {
+                    if ( category.getName().equals( categorie ) ) {
+                        cat = category;
+                    }
+                }
+                CategorisationLibelle categorisationLibelle = new CategorisationLibelle( idInt, libelle, cat );
+                categorisationLibelles.add( categorisationLibelle );
+            }
+
+        } catch ( FileNotFoundException e ) {
+
+            LOGGER.error( "Impossible de lire le fichier à l'emplacement suivant : " + path, e );
+        }
+        return categorisationLibelles;
     }
 
 }

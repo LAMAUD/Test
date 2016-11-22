@@ -18,19 +18,22 @@ public class Category implements Serializable {
     /**
      * 
      */
-    private static final long serialVersionUID = -6838025340162577907L;
+    private static final long           serialVersionUID = -6838025340162577907L;
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
-    private Integer           id;
+    private Integer                     id;
 
     @NotNull
-    private String            name;
+    private String                      name;
 
-    private String            description;
+    private String                      description;
 
     @OneToMany( mappedBy = "category" )
-    private List<Transaction> transactions;
+    private List<Transaction>           transactions;
+
+    @OneToMany( mappedBy = "category" )
+    private List<CategorisationLibelle> categorisationLibelles;
 
     public String getName() {
         return name;

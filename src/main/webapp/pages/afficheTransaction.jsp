@@ -22,7 +22,7 @@
 							<td><c:out value="${transaction.getDateString()}" /></td>
 							<td class="action">
 		                        <a href="#" onclick="update('<c:url value="/transaction/update"><c:param name="id" value="${ transaction.id }" /></c:url>')">
-		                            <img src="<c:url value="/resources/images/supprimer.jpg"/>" width="20" height="20" alt="Supprimer" />
+		                            <img src="<c:url value="/resources/images/update.png"/>" width="20" height="20" alt="Update" />
 		                        </a>
 		                    </td>
 <!-- 							<td class="action"> -->

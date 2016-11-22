@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<c:url var="urlResources" value="/resources/bootstrap" />
 <title>Update</title>
 
 <!-- Bootstrap Core CSS -->
@@ -32,76 +33,90 @@
 <link href="${urlResources}/css/creative.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${urlResources}/style.css" />
 <!--     jQuery -->
-    <script src="${urlResources}/vendor/jquery/jquery.min.js"></script>
+<script src="${urlResources}/vendor/jquery/jquery.min.js"></script>
+<script src="${urlResources}/style.js"></script>
+
 </head>
 <body>
 
-<div class="col-lg-7">
-			<c:url var="createTransaction" value="/transaction/save"/>
-			<form:form action="${ createTransaction }" method="POST" commandName="transaction" class="form-horizontal">
-				<form:errors path="*" cssClass="alert alert-danger" element="div"></form:errors>
+	<div class="col-lg-7">
+		<c:url var="createTransaction" value="/transaction/updateCategorie" />
+		<form:form action="${ createTransaction }" method="POST"
+			commandName="transaction" class="form-horizontal">
+			<form:errors path="*" cssClass="alert alert-danger" element="div"></form:errors>
 
-
+			<div class="form-group">
 				<label class="control-label col-lg-4" for="id"> id </label>
-					<div class="col-lg-8">
-						<form:input type="number" id="id" path="id" placeholder="${transaction.getId() }" readonly="true"/> 
-						<form:errors path="depense" element="div" /> 
-					</div>
+				<div class="col-lg-8">
+					<form:input type="number" id="id" path="id"
+						placeholder="${transaction.getId() }" readonly="true" />
+					<form:errors path="depense" element="div" />
 				</div>
-				
-				<div class="form-group">
-					<label class="control-label col-lg-4" for="depense"> <spring:message code="label.depense.transaction" text="default text" /></label>
-					<div class="col-lg-8">
-						<form:input type="number" step="0.01" id="depense" path="depense" placeholder="${transaction.getDepense() }" readonly="true"/> 
-						<form:errors path="depense" element="div" /> 
-					</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-lg-4" for="depense"> <spring:message
+						code="label.depense.transaction" text="default text" /></label>
+				<div class="col-lg-8">
+					<form:input type="number" step="0.01" id="depense" path="depense"
+						placeholder="${transaction.getDepense() }" readonly="true" />
+					<form:errors path="depense" element="div" />
 				</div>
-				
-				<div class="form-group">
-					<label class="control-label col-lg-4" for="recette"> <spring:message code="label.recette.transaction" text="default text" /></label>
-					<div class="col-lg-8">
-						<form:input type="number" step="0.01" id="recette" path="recette" placeholder="${transaction.getRecette() }" readonly="true" /> 
-						<form:errors path="recette" element="div" /> 
-					</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-lg-4" for="recette"> <spring:message
+						code="label.recette.transaction" text="default text" /></label>
+				<div class="col-lg-8">
+					<form:input type="number" step="0.01" id="recette" path="recette"
+						placeholder="${transaction.getRecette() }" readonly="true" />
+					<form:errors path="recette" element="div" />
 				</div>
-				
-				<div class="form-group">
-					<label class="control-label col-lg-4" for="description"> <spring:message code="label.description.transaction" text="default text" /></label>
-					<div class="col-lg-8">
-						<form:input type="text" id="description" path="description" placeholder="${transaction.getDescription() }" readonly="true"/> 
-						<form:errors path="description" element="div" /> 
-					</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-lg-4" for="description"> <spring:message
+						code="label.description.transaction" text="default text" /></label>
+				<div class="col-lg-8">
+					<form:input type="text" id="description" path="description"
+						placeholder="${transaction.getDescription() }" readonly="true" />
+					<form:errors path="description" element="div" />
 				</div>
-				
-				<div class="form-group">
-					<label class="control-label col-lg-4" for="date"> <spring:message code="label.date.transaction" text="default text" /></label>
-					<div class="col-lg-8">
-						<form:input type="date" id="date" path="date" placeholder="${transaction.getDate() }" readonly="true"/> 
-						<form:errors path="date" element="div" /> 
-					</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-lg-4" for="date"> <spring:message
+						code="label.date.transaction" text="default text" /></label>
+				<div class="col-lg-8">
+					<form:input type="date" id="date" path="date"
+						placeholder="${transaction.getDate() }" readonly="true" />
+					<form:errors path="date" element="div" />
 				</div>
-			
-			
-				<div class="form-group">
-					<label class="control-label col-lg-4" for="category"> <spring:message code="choose.categorie.transaction"
-								text="default text" /> 
-					</label>
-					<div class="col-lg-8">
-						<form:select id="category" name="category" path="category.id">
-							<form:option value="${transaction.getCategory() }" label="${transaction.getCategory().getName() }" />
-							<form:options items="${categories}" itemValue="id" itemLabel="name" />
-						</form:select>
-					</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="control-label col-lg-4" for="category"> <spring:message
+						code="choose.categorie.transaction" text="default text" />
+				</label>
+				<div class="col-lg-8">
+					<form:select id="category" name="category" path="category.id">
+						<form:options items="${categories}" itemValue="id"
+							itemLabel="name" />
+					</form:select>
 				</div>
-			
-				
-				<div class="col-lg-offset-5 col-lg-12">
-					<a href="<c:url  value="/home/initForm" />">Retour</a>
-					<button type="submit" class="btn btn-default">Créer</button>
-				</div>
-			
-			</form:form>
-		</div>
+			</div>
+
+
+			<div class="col-lg-offset-5 col-lg-12">
+				<a href="#" onclick="window.close();">Retour</a>
+				<button type="submit" class="btn btn-default" >Créer</button>
+			</div>
+	${script}
+		</form:form>
+	</div>
+
+
 
 </body>
 </html>

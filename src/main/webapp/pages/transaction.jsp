@@ -87,24 +87,9 @@
 		
  		<script type="text/javascript">
 	        $(document).ready(function() {
-	            $('#call').click(function ()
-	            {
-	            	var regex = new RegExp('-', 'g');
-	            	var dateDebut = $('#ip').val().replace(regex,"");
-                	var dateFin = $('#op').val().replace(regex,"");
-                	var category = $('#filtre_categorie').val();
-                	console.log(category);
-	                $.ajax({
-	                    type: "GET",
-	                    url: "/test/transaction/ajax",   
-	                    data: "input=" +dateDebut+"&output="+dateFin+"&category="+category,
-	                    success: function(msg){      
-	                            $('#output').html(msg);
-	                    }
-	                });
-	            });
-	
+	            $('#call').click(ajax);
 	        });
+	       
 	    </script>
 	
 	<%@include file="/template/footer.jsp"%>
