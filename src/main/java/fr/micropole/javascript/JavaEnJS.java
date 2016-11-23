@@ -42,7 +42,7 @@ public class JavaEnJS {
 
         pieChart.append( "]);" );
         pieChart.append( "var options = {" );
-        pieChart.append( "title : 'My Daily Activities'," );
+        pieChart.append( "title : 'Camembert des dépenses'," );
         pieChart.append( "is3D : true," );
         pieChart.append( "};" );
         pieChart.append( "var chart = new google.visualization.PieChart(document" );
