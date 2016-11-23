@@ -2,6 +2,8 @@
 
 <div class="jumbotron text-center">
 	<a href="/test/categorisationLibelle/import" class="btn btn-default">Import
+		Table ==> Lien Categorie / Libelle</a> <a
+		href="/test/categorisationLibelle/export" class="btn btn-default">Export
 		Table ==> Lien Categorie / Libelle</a>
 </div>
 

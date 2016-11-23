@@ -48,6 +48,22 @@ public class CategorisationLibelleController {
             LOGGER.error( "Impossible de lire les associations entre les libellés et les catégories", e );
         }
 
+        modelAndView.addObject( "categorisationLibelles", categorisationLibelles );
+        return modelAndView;
+
+    }
+
+    @RequestMapping( value = "/export", method = RequestMethod.GET )
+    public ModelAndView export() throws IOException {
+
+        ModelAndView modelAndView = new ModelAndView( "categorisationLibelle" );
+
+        try {
+            categorisationLibelles = serviceCategorisationLibelle.readAll();
+        } catch ( ServiceException | DAOException e ) {
+            LOGGER.error( "Impossible de lire les associations entre les libellés et les catégories", e );
+        }
+
         ExportToFileHelper.exportCategorisationLibelleDataToCSVFile( categorisationLibelles );
         modelAndView.addObject( "categorisationLibelles", categorisationLibelles );
         return modelAndView;
@@ -55,10 +71,10 @@ public class CategorisationLibelleController {
     }
 
     @RequestMapping( value = "/import", method = RequestMethod.GET )
-    public ModelAndView importCategorisationlibelle() throws IOException {
+    public ModelAndView importCategorisationlibelle() throws IOException, ServiceException, DAOException {
 
         ModelAndView modelAndView = new ModelAndView( "categorisationLibelle" );
-
+        List<CategorisationLibelle> categorisationLibellesFromImportation = new ArrayList<CategorisationLibelle>();
         String rootPath = System.getProperty( "catalina.home" );
         String path = rootPath + "/../../test/test/" + RESOURCES_PATH + "/categorisationLibelle.csv";
 
@@ -67,8 +83,27 @@ public class CategorisationLibelleController {
         } catch ( ServiceException | DAOException e ) {
             LOGGER.error( "Impossible de lire les categories", e );
         }
-        categorisationLibelles = ImportationHelper.importationCSVCategorisationLibelle( path, categories );
+        try {
+            categorisationLibelles = serviceCategorisationLibelle.readAll();
+        } catch ( ServiceException | DAOException e ) {
+            LOGGER.error( "Impossible de lire les associations entre les libellés et les catégories", e );
+        }
 
+        categorisationLibellesFromImportation = ImportationHelper
+                .importationCSVCategorisationLibelle( path, categories );
+
+        for ( CategorisationLibelle categorisationLibelleFromImportation : categorisationLibellesFromImportation ) {
+            if ( !categorisationLibelles.contains( categorisationLibelleFromImportation ) ) {
+                categorisationLibelleFromImportation = serviceCategorisationLibelle
+                        .create( categorisationLibelleFromImportation );
+            }
+        }
+
+        try {
+            categorisationLibelles = serviceCategorisationLibelle.readAll();
+        } catch ( ServiceException | DAOException e ) {
+            LOGGER.error( "Impossible de lire les associations entre les libellés et les catégories", e );
+        }
         ExportToFileHelper.exportCategorisationLibelleDataToCSVFile( categorisationLibelles );
         modelAndView.addObject( "categorisationLibelles", categorisationLibelles );
         return modelAndView;

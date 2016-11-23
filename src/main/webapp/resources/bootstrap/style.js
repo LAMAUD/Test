@@ -17,7 +17,7 @@ function update(url) {
     var newWindow = window.open(url, "Transaction", 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
     $(newWindow).on("beforeunload", function(){
     	// Sert à attendre que la base soit chargée
-    	setTimeout(function(){ ajax2();},100);
+    	setTimeout(function(){ ajax2();},500);
     })
 
     

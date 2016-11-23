@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.micropole.enumeration.SpecifiedCategory;
 import fr.micropole.exception.DAOException;
 import fr.micropole.exception.ServiceException;
+import fr.micropole.helper.LibelleHelper;
 import fr.micropole.pojo.CategorisationLibelle;
 import fr.micropole.pojo.Category;
 import fr.micropole.pojo.Transaction;
@@ -32,7 +33,7 @@ import fr.micropole.validation.TransactionValidation;
 @RequestMapping( value = "/transaction" )
 public class TransactionController {
 
-    private final static Logger  LOGGER       = Logger.getLogger( TransactionController.class );
+    private final static Logger  LOGGER                 = Logger.getLogger( TransactionController.class );
 
     @Autowired
     ServiceTransaction           serviceTransaction;
@@ -46,8 +47,9 @@ public class TransactionController {
     @Autowired
     ServiceCategorisationLibelle serviceCategorisationLibelle;
 
-    List<Category>               categories   = new ArrayList<Category>();
-    List<Transaction>            transactions = new ArrayList<Transaction>();
+    List<Category>               categories             = new ArrayList<Category>();
+    List<Transaction>            transactions           = new ArrayList<Transaction>();
+    List<CategorisationLibelle>  categorisationLibelles = new ArrayList<CategorisationLibelle>();
 
     @RequestMapping( value = "/initForm", method = RequestMethod.GET )
     public ModelAndView initForm() {
@@ -204,12 +206,26 @@ public class TransactionController {
         }
         CategorisationLibelle categorisationLibelle = new CategorisationLibelle();
         categorisationLibelle.setCategory( cat );
-        categorisationLibelle.setLibelle( transaction.getDescription() );
+
+        // Troncage des libellés pour enlever la date à la fin du libellé de la
+        // transaction
+        String libelleNouveau = LibelleHelper.troncageLibelle( transaction.getDescription() );
+        categorisationLibelle.setLibelle( libelleNouveau );
 
         try {
-            serviceCategorisationLibelle.create( categorisationLibelle );
-        } catch ( ServiceException | DAOException e ) {
-            LOGGER.error( "Impossible de créer l'association entre le libelle et la categorie", e );
+            categorisationLibelles = serviceCategorisationLibelle.readAll();
+        } catch ( ServiceException | DAOException e1 ) {
+            LOGGER.error( "Impossible de lire la table transaction Libelle", e1 );
+        }
+
+        if ( !( categorisationLibelle.getLibelle().startsWith( "RETRAIT" ) || categorisationLibelle.getLibelle()
+                .startsWith( "CHEQUE" ) || categorisationLibelles.contains( categorisationLibelle ) ) ) {
+
+            try {
+                serviceCategorisationLibelle.create( categorisationLibelle );
+            } catch ( ServiceException | DAOException e ) {
+                LOGGER.error( "Impossible de créer l'association entre le libelle et la categorie", e );
+            }
         }
 
         StringBuilder script = new StringBuilder();

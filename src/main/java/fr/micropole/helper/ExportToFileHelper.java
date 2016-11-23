@@ -1,8 +1,12 @@
 package fr.micropole.helper;
 
-import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +24,15 @@ public class ExportToFileHelper {
         String rootPath = System.getProperty( "catalina.home" );
         String path = rootPath + "/../../test/test/" + RESOURCES_PATH + "/categorisationLibelle.csv";
 
-        FileWriter writer = new FileWriter( path );
+        File write = new File( path );
+        BufferedWriter writer = new BufferedWriter( new OutputStreamWriter( new FileOutputStream( write ), "UTF-8" ) );
 
         for ( CategorisationLibelle categorisationLibelle : categorisationLibelles ) {
             values.add( categorisationLibelle.getId().toString() );
             values.add( categorisationLibelle.getCategory().getName() );
             values.add( categorisationLibelle.getLibelle() );
             ExportToFileHelper.writeLine( writer, values );
+            values = new ArrayList<String>();
         }
 
         writer.flush();
@@ -54,6 +60,15 @@ public class ExportToFileHelper {
         sb.append( "\n" );
         w.append( sb.toString() );
 
+    }
+
+    public static String encode( String ISO ) {
+
+        Charset charEncodeInit = Charset.forName( "ISO-8859-1" );
+        Charset charEncodeFinal = Charset.forName( "UTF-8" );
+        byte byteStringCategory[] = ISO.getBytes( charEncodeInit );
+        String cate = new String( byteStringCategory, charEncodeFinal );
+        return cate;
     }
 
 }

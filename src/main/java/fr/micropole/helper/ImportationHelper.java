@@ -119,8 +119,9 @@ public class ImportationHelper {
                 String libelle = oneData[2];
                 Category cat = new Category();
                 Integer idInt = Integer.parseInt( id );
+                String cate = ExportToFileHelper.encode( categorie );
                 for ( Category category : categories ) {
-                    if ( category.getName().equals( categorie ) ) {
+                    if ( category.getName().equals( cate ) ) {
                         cat = category;
                     }
                 }

@@ -18,9 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.micropole.exception.DAOException;
 import fr.micropole.exception.ServiceException;
 import fr.micropole.helper.UploadFileHelper;
+import fr.micropole.pojo.CategorisationLibelle;
 import fr.micropole.pojo.Category;
 import fr.micropole.pojo.ImportCSVTransaction;
 import fr.micropole.pojo.Transaction;
+import fr.micropole.service.ServiceCategorisationLibelle;
 import fr.micropole.service.ServiceCategory;
 import fr.micropole.service.ServiceCsv;
 import fr.micropole.service.ServiceTransaction;
@@ -30,21 +32,25 @@ import fr.micropole.transaction.helper.TransfertImport;
 @RequestMapping( value = "/csv" )
 public class CSVController {
 
-    private final static Logger LOGGER                              = Logger.getLogger( CSVController.class );
+    private final static Logger  LOGGER                              = Logger.getLogger( CSVController.class );
 
     @Autowired
-    ServiceCsv                  serviceCsv;
+    ServiceCsv                   serviceCsv;
 
     @Autowired
-    ServiceCategory             serviceCategory;
+    ServiceCategory              serviceCategory;
 
     @Autowired
-    ServiceTransaction          serviceTransaction;
+    ServiceTransaction           serviceTransaction;
 
-    List<ImportCSVTransaction>  importCSVTransactions               = new ArrayList<ImportCSVTransaction>();
-    List<ImportCSVTransaction>  importCSVTransactionsPresentsEnBase = new ArrayList<ImportCSVTransaction>();
-    List<Category>              categories                          = new ArrayList<Category>();
-    List<Transaction>           transactions                        = new ArrayList<Transaction>();
+    @Autowired
+    ServiceCategorisationLibelle serviceCategorisationLibelle;
+
+    List<ImportCSVTransaction>   importCSVTransactions               = new ArrayList<ImportCSVTransaction>();
+    List<ImportCSVTransaction>   importCSVTransactionsPresentsEnBase = new ArrayList<ImportCSVTransaction>();
+    List<Category>               categories                          = new ArrayList<Category>();
+    List<Transaction>            transactions                        = new ArrayList<Transaction>();
+    List<CategorisationLibelle>  categorisationLibelle               = new ArrayList<CategorisationLibelle>();
 
     @RequestMapping( value = "/initForm", method = RequestMethod.GET )
     public ModelAndView initForm() {
@@ -54,7 +60,7 @@ public class CSVController {
     }
 
     @RequestMapping( value = "/upload", method = RequestMethod.POST )
-    public ModelAndView upload(@RequestParam( "file" ) MultipartFile file ) {
+    public ModelAndView upload( @RequestParam( "file" ) MultipartFile file ) {
         ModelAndView modelAndView = new ModelAndView( "csv" );
 
         String[] message = UploadFileHelper.uploadFile( file );
@@ -127,10 +133,18 @@ public class CSVController {
             LOGGER.error( "Impossible de lire les transactions présentes en base", e1 );
         }
 
+        try {
+            categorisationLibelle = serviceCategorisationLibelle.readAll();
+        } catch ( ServiceException | DAOException e1 ) {
+            LOGGER.error( "Impossible de lire les categories / Libelles présentes en base", e1 );
+        }
+
         for ( ImportCSVTransaction importCSVTransactionPresentsEnBase : importCSVTransactionsPresentsEnBase ) {
             Transaction transaction = new Transaction();
 
-            transaction = TransfertImport.TransfertImportTransaction( importCSVTransactionPresentsEnBase, categories );
+            // Permet d'associer les libellés des transactions aux catégories
+            transaction = TransfertImport.TransfertImportTransaction( importCSVTransactionPresentsEnBase, categories,
+                    categorisationLibelle );
             try {
                 if ( !transactions.contains( transaction ) ) {
 
