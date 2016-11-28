@@ -26,4 +26,6 @@ public interface ServiceTransaction {
             throws ParseException;
 
     public Transaction findById( Integer id ) throws DAOException;
+
+    public List<Transaction> readTransactionByMonth( String month );
 }

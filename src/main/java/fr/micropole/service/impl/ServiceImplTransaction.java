@@ -114,4 +114,9 @@ public class ServiceImplTransaction implements ServiceTransaction {
         return dAOTransaction.findById( id );
     }
 
+    @Override
+    public List<Transaction> readTransactionByMonth( String month ) {
+        return dAOTransaction.readTransactionByMonth( month );
+    }
+
 }

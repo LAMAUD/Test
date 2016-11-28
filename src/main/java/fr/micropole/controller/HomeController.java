@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.micropole.enumeration.MonthOfTheYear;
 import fr.micropole.exception.DAOException;
 import fr.micropole.exception.ServiceException;
 import fr.micropole.helper.DepensesParCategoriesHelper;
@@ -38,6 +40,9 @@ public class HomeController {
     public ModelAndView initForm() {
 
         HashMap<Category, Double> categorisation = new HashMap<>();
+        // List<String> months = new ArrayList<String>();
+
+        MonthOfTheYear[] months = MonthOfTheYear.values();
 
         ModelAndView modelAndView = new ModelAndView( "home" );
 
@@ -50,10 +55,36 @@ public class HomeController {
         Double rate = serviceTransaction.rateExpensesIncome( transactions );
         categorisation = DepensesParCategoriesHelper.DepenseParCategorieTotal( transactions );
         StringBuilder script = JavaEnJS.PieChart( categorisation );
+        modelAndView.addObject( "months", months );
         modelAndView.addObject( "script", script );
         modelAndView.addObject( "Depenses", serviceTransaction.sumOfExpenses( transactions ) );
         modelAndView.addObject( "Recettes", serviceTransaction.sumOfIncome( transactions ) );
         modelAndView.addObject( "ratioDepensesRecettes", rate );
+
+        return modelAndView;
+    }
+
+    @RequestMapping( value = "/ajax", method = RequestMethod.GET )
+    public ModelAndView ajax( @RequestParam( "month" ) String month ) {
+
+        HashMap<Category, Double> categorisation = new HashMap<>();
+
+        ModelAndView modelAndView = new ModelAndView( "affichePiechart" );
+
+        if ( month.equals( "all" ) ) {
+            try {
+                transactions = serviceTransaction.readAll();
+            } catch ( ServiceException | DAOException e ) {
+                LOGGER.error( "Impossible de lire toutes les transactions", e );
+            }
+        }
+        else {
+            transactions = serviceTransaction.readTransactionByMonth( month );
+        }
+
+        categorisation = DepensesParCategoriesHelper.DepenseParCategorieTotal( transactions );
+        StringBuilder script = JavaEnJS.PieChart( categorisation );
+        modelAndView.addObject( "script", script );
 
         return modelAndView;
     }

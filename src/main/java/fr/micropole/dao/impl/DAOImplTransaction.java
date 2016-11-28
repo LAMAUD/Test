@@ -2,6 +2,7 @@ package fr.micropole.dao.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -40,6 +41,23 @@ public class DAOImplTransaction extends GenericDAOImpl<Transaction> implements D
         String query = "SELECT t FROM Transaction t JOIN FETCH t.category c WHERE c.name = :name AND t.date BETWEEN :dateDebut AND :dateFin ORDER BY t.date DESC";
         return entityManager.createQuery( query ).setParameter( "name", category )
                 .setParameter( "dateDebut", dateDeb ).setParameter( "dateFin", dateF ).getResultList();
+    }
+
+    @SuppressWarnings( { "unchecked", "deprecation" } )
+    @Override
+    public List<Transaction> readTransactionByMonth( String month ) {
+        Calendar c = Calendar.getInstance();
+        c.set( Calendar.MONTH, Integer.parseInt( month ) - 1 ); // n° de mois -
+        int max = c.getActualMaximum( Calendar.DATE );
+        Date dateDeb = new Date( 116, Integer.parseInt( month ) - 1, 1 );
+        Date dateFin = new Date( 116, Integer.parseInt( month ) - 1, max );
+
+        String request = "Select t from Transaction t WHERE t.date BETWEEN :dateDebut AND :dateFin ORDER BY t.date DESC";
+
+        return this.entityManager.createQuery( request ).setParameter(
+                "dateDebut", dateDeb )
+                .setParameter( "dateFin", dateFin )
+                .getResultList();
     }
 
 }

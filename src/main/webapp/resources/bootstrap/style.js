@@ -67,3 +67,18 @@ function ajax2 ()
         }
     });
 }
+
+function ajaxPiechart ()
+{
+	
+
+	var month = $('#filtre_mois').val();
+    $.ajax({
+        type: "GET",
+        url: "/test/home/ajax",   
+        data: "month=" +month,
+        success: function(msg){      
+                $('#output').html(msg);
+        }
+    });
+}

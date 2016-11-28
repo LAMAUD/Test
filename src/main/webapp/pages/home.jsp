@@ -40,16 +40,29 @@
 		</div>
 
 	</div>
-	<div class="col-lg-4"><div id="piechart_3d" style="width: 900px; height: 500px;"></div></div>
+	<div class="col-lg-4">
+		<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+	</div>
 </div>
-<div class="container col-lg-12">
-	
-</div>
+<div class="container col-lg-12"></div>
 
+
+<select id="filtre_mois" name="triMensuel" onchange="ajaxPiechart()">
+	<option value="all" selected>Toutes les Données</option>
+	<c:forEach var="month" items="${ months }">
+		<option value="${ month.getNumber() }">${ month.getName() }</option>
+	</c:forEach>
+</select>
+
+<div class="col-lg-12" id="output"></div>
 
 ${script }
 
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#filtre_mois').click(ajaxPiechart());
+	});
+</script>
 
-</body>
-</html>
+<%@include file="/template/footer.jsp"%>

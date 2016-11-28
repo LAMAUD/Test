@@ -130,6 +130,12 @@ public class Transaction implements Serializable {
         return sdf.format( date );
     }
 
+    @SuppressWarnings( "deprecation" )
+    public String getMois() {
+        return String.valueOf( this.date.getMonth() );
+
+    }
+
     public void setDate( Date date ) {
         this.date = date;
     }

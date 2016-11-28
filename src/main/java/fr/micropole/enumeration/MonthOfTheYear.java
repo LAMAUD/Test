@@ -16,17 +16,22 @@ public enum MonthOfTheYear {
     NOVEMBER( "11", "Novembre" ),
     DECEMBER( "12", "Décembre" );
 
-    private String name   = "";
     private String number = "";
+    private String name   = "";
 
     // Constructeur
-    MonthOfTheYear( String name, String number ) {
-        this.name = name;
+    MonthOfTheYear( String number, String name ) {
         this.number = number;
+        this.name = name;
+
     }
 
-    public void getNumber() {
-        System.out.println( number );
+    public String getNumber() {
+        return number;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String toString() {
