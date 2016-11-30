@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8 " pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8 "
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html >
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -13,7 +14,8 @@
 <c:url var="urlResources" value="/resources/bootstrap" />
 <title>Compta</title>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 
 <title>Creative - Start Bootstrap Theme</title>
 
@@ -35,12 +37,16 @@
 <!-- Plugin CSS -->
 <link href="${urlResources}/vendor/magnific-popup/magnific-popup.css"
 	rel="stylesheet">
+<link
+	href="${urlResources}/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
 
 <!-- Theme CSS -->
 <link href="${urlResources}/css/creative.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${urlResources}/style.css" />
+<link rel="stylesheet" href="${urlResources}/sidebar.css" />
 <!--     jQuery -->
-    <script src="${urlResources}/vendor/jquery/jquery.min.js"></script>
+<script src="${urlResources}/vendor/jquery/jquery.min.js"></script>
 </head>
 <body>
 
@@ -60,7 +66,8 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="page-scroll" href="/test/categorisationLibelle/initForm">Cat - Libelle</a></li>
+					<li><a class="page-scroll"
+						href="/test/categorisationLibelle/initForm">Cat - Libelle</a></li>
 					<li><a class="page-scroll" href="/test/user/initForm">User</a></li>
 					<li><a class="page-scroll" href="/test/category/initForm">Catégorie</a></li>
 					<li><a class="page-scroll" href="/test/transaction/initForm">Transactions</a></li>
@@ -71,4 +78,3 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
-
