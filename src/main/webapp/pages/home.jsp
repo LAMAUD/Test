@@ -13,6 +13,12 @@
 
 
 </div>
+<div class="col-lg-12 contre-lg-12">
+
+	<%@include file="/pages/ajaxHome/budget.jsp"%>
+
+
+</div>
 
 
 
