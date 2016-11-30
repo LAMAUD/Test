@@ -25,7 +25,7 @@ public class UploadFileHelper {
                 // Creating the directory to store file
                 String rootPath = System.getProperty( "catalina.home" );
 
-                File dir = new File( rootPath + "/../../test/test/" + RESOURCES_PATH );
+                File dir = new File( rootPath + "/../../test/test/" + RESOURCES_PATH + "/Data" );
                 if ( !dir.exists() )
                     dir.mkdirs();
 

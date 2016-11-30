@@ -4,7 +4,7 @@
 
 
 
-<div class="col-lg-12 jumbotron">
+<div class="container col-lg-12 padNY" style="background-image: url('<c:url value="/resources/images/NY.jpg"/>'); background-size: 1263px 543px; color: #F05F40; ">
 	<div class="col-lg-12 text-center">
 		<h3>Import de fichiers CSV</h3>
 	</div>

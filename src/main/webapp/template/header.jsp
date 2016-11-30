@@ -22,6 +22,8 @@
 <!-- Bootstrap Core CSS -->
 <link href="${urlResources}/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
+<link href="${urlResources}/vendor/bootstrap/css/bootstrap-select.css"
+	rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link

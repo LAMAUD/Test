@@ -83,6 +83,22 @@ function ajaxPiechart ()
     });
 }
 
+function ajaxRatioDepRec()
+{
+	
+
+	var month = $('#filtre_moisDepRec').val();
+    $.ajax({
+        type: "GET",
+        url: "/test/home/ajaxDepRec",   
+        data: "month=" +month,
+        success: function(msg){      
+                $('#tableau').html(msg);
+        }
+    });
+}
+
+
 $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("active");

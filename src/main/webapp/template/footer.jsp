@@ -2,6 +2,7 @@
 
 <!--     Bootstrap Core JavaScript -->
     <script src="${urlResources}/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${urlResources}/vendor/bootstrap/js/bootstrap-select.js"></script>
 
 <!--     Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

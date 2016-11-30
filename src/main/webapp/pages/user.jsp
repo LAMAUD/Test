@@ -2,7 +2,7 @@
 
 <%@include file="/template/header.jsp"%>
 
-<div class="col-lg-12 jumbotron text-center">
+<div class="container col-lg-12 padNY text-center" style="background-image: url('<c:url value="/resources/images/NY.jpg"/>'); background-size: 1263px 543px; color: #F05F40;">
 	<c:url var="createUser" value="/user/save" />
 	<form:form action="${ createUser }" method="POST" commandName="user">
 		<form:errors path="*" cssClass="alert alert-danger" element="div"></form:errors>

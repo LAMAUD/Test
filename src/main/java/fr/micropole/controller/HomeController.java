@@ -39,27 +39,11 @@ public class HomeController {
     @RequestMapping( value = "/initForm", method = RequestMethod.GET )
     public ModelAndView initForm() {
 
-        HashMap<Category, Double> categorisation = new HashMap<>();
-        // List<String> months = new ArrayList<String>();
-
         MonthOfTheYear[] months = MonthOfTheYear.values();
 
         ModelAndView modelAndView = new ModelAndView( "home" );
 
-        try {
-            transactions = serviceTransaction.readAll();
-        } catch ( ServiceException | DAOException e ) {
-            LOGGER.error( "Impossible de lire toutes les transactions", e );
-        }
-
-        Double rate = serviceTransaction.rateExpensesIncome( transactions );
-        categorisation = DepensesParCategoriesHelper.DepenseParCategorieTotal( transactions );
-        StringBuilder script = JavaEnJS.PieChart( categorisation );
         modelAndView.addObject( "months", months );
-        modelAndView.addObject( "script", script );
-        modelAndView.addObject( "Depenses", serviceTransaction.sumOfExpenses( transactions ) );
-        modelAndView.addObject( "Recettes", serviceTransaction.sumOfIncome( transactions ) );
-        modelAndView.addObject( "ratioDepensesRecettes", rate );
 
         return modelAndView;
     }
@@ -86,6 +70,28 @@ public class HomeController {
         StringBuilder script = JavaEnJS.PieChart( categorisation );
         modelAndView.addObject( "script", script );
 
+        return modelAndView;
+    }
+
+    @RequestMapping( value = "/ajaxDepRec", method = RequestMethod.GET )
+    public ModelAndView ajaxDepRec( @RequestParam( "month" ) String month ) {
+
+        ModelAndView modelAndView = new ModelAndView( "ajaxHome/progressbar" );
+
+        if ( month.equals( "all" ) ) {
+            try {
+                transactions = serviceTransaction.readAll();
+            } catch ( ServiceException | DAOException e ) {
+                LOGGER.error( "Impossible de lire toutes les transactions", e );
+            }
+        }
+        else {
+            transactions = serviceTransaction.readTransactionByMonth( month );
+        }
+        Double rate = serviceTransaction.rateExpensesIncome( transactions );
+        modelAndView.addObject( "ratioDepensesRecettes", rate );
+        modelAndView.addObject( "Depenses", serviceTransaction.sumOfExpenses( transactions ) );
+        modelAndView.addObject( "Recettes", serviceTransaction.sumOfIncome( transactions ) );
         return modelAndView;
     }
 
