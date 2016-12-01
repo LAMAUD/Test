@@ -35,8 +35,8 @@
 		</select>
 	</div>
 	<!-- 	AJAX -->
-	<div class="col-lg-offset-3 col-lg-9" id="piechart_3d"
-		style="width: 620px; height: 500px;"></div>
+	<div class="col-lg-offset-2 col-lg-9" id="piechart_3d"
+		style="width: 1000px; height: 800px;"></div>
 </div>
 
 

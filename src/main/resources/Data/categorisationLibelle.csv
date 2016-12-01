@@ -56,7 +56,7 @@
 84;Technologie;CB DARTY           FACT;
 85;Shopping;CB AMAZON;
 86;Activité Sportive;CB Z 5             FACT;
-87;Transport en Commun;TRAIN;
+87;Transport en Commun;DOUDOU TRAIN LYON;
 88;AirBNB;CB AIRBNB          FACT;
 89;Restaurant;CB UN P'TIT COIN   FACT;
 90;Courses supermarchés;LAMOWWW TRICOUNT;
@@ -74,9 +74,7 @@
 102;Restaurant;CB SARL LAURELIS   FACT;
 103;Restaurant;CB PETITE BISCUITE FACT;
 104;Vie Quotidienne;CB LE...L          FACT;
-105;Courses supermarchés;CB LIDL;
-106;Vie Quotidienne;CB LA POSTE;
-107;Impots;PRLV DIRECTION GENERALE DES FINA;
-108;Fast Food;CB QUICK           FACT;
-109;Activité Sportive;CHEQUE N 0000149;
-110;Activité Sportive;CHEQUE N 0000147;
+387;Courses supermarchés;CB LIDL;
+388;Vie Quotidienne;CB LA POSTE;
+389;Impots;PRLV DIRECTION GENERALE DES FINA;
+390;Fast Food;CB QUICK           FACT;

@@ -61,7 +61,16 @@
 					<span class="sr-only">Toggle navigation</span> Menu <i
 						class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand page-scroll" href="/test/home/initForm">Compte</a>
+				<div class="dropdown navbar-brand page-scroll">
+				<a class="dropdown-toggle" type="button" data-toggle="dropdown">Compte
+				<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+    				<li><a href="/test/home/initForm">Home</a></li>
+				    <li><a href="#">Budgetisation</a></li>
+<!-- 				    <li><a href="#">JavaScript</a></li> -->
+				  </ul>
+				</div>
+<!-- 				<a class="navbar-brand page-scroll" href="/test/home/initForm">Compte</a> -->
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->

@@ -31,6 +31,7 @@ public enum SpecifiedCategory {
     PEL( "Remboursement PEL", "Plan Epargne Social" ),
     FRAIS( "Frais Banquaire", "Frais bancaires" ),
     ECONOMIES( "Economies", "Reste fais en fin de mois" ),
+    ECONOMIES_DRIVY( "Economies Drivy", "Economies liées à Drivy" ),
     IMPOTS( "Impots", "Impots" );
 
     private String   name        = "";

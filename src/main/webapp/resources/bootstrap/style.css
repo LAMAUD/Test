@@ -10,6 +10,29 @@ a.page-scroll {
     background-color: #5d5858;
 }
 
+.container-fluid .navbar-brand {
+
+    background-color: #5d5858;
+}
+
+/* Surcharge Dropdown menu */
+
+
+.dropdown-menu>li>a:hover {
+	color: #F05F40;
+    background-color: #171616;
+}
+
+.dropdown-menu>li>a{
+	color: #F05F40;
+}
+
+.dropdown-menu {
+	
+    background-color:  #5d5858;
+}
+
+/* --------------------------------------------------- */
 
 .jumbotron {
     margin-bottom: 0px;
@@ -31,4 +54,5 @@ rect {
     x: initial !important; 
     y: initial !important; 
 }
+
 

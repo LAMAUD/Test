@@ -60,5 +60,4 @@
 		</table>
 	</div>
 </div>
-</body>
-</html>
+<%@include file="/template/footer.jsp"%>
